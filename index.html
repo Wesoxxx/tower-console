@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -247,6 +247,151 @@ nav.tabs button[aria-current="page"]{background:color-mix(in srgb,var(--accent) 
 .lead{font-size:.88rem;color:var(--muted);margin:0 0 4px}
 .h3{font-family:var(--display);font-size:.95rem;margin:14px 0 4px;font-weight:700}
 .panel > .h3:first-of-type{margin-top:4px}
+/* ===== Pro theme: dense dark console. Overrides the earlier tokens and components. ===== */
+:root,:root[data-theme="dark"],:root:not([data-theme="light"]){
+  --bg:#0A0E13; --panel:#11171E; --panel2:#151C24; --ink:#E8EDF2; --muted:#8693A3; --dim:#5B6675; --line:#1F2933; --soft:#18202A; --hair:#1C252F;
+  --accent:#3FA9F5; --accent-ink:#04121D; --accent-soft:rgba(63,169,245,.14);
+  --coin:#F2B33D; --cell:#36D6C3; --shard:#B58CFF; --stone:#7FD36B; --gem:#4FC3F7; --medal:#F28C5B; --bits:#9AA8FF; --bad:#FF6B6B; --good:#4CD39A;
+  --display:"Inter","Segoe UI",system-ui,sans-serif; --body:"Inter","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --r:12px; --shadow:none; --glow:transparent; --glass:rgba(10,14,19,.86); color-scheme:dark;
+}
+html{background:var(--bg)}
+body{background:var(--bg);background-image:none;color:var(--ink);font-family:var(--body);font-size:14.5px;line-height:1.45;padding:0 0 calc(84px + env(safe-area-inset-bottom,0px));-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.01em;font-weight:700}
+h1{font-size:1.75rem}
+h2{font-size:1.02rem;font-weight:650}
+.wrap{max-width:none;padding:18px 16px 0;gap:16px}
+.view{gap:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:none;padding:16px;gap:12px}
+.panel.import{background:var(--panel);border:1px solid var(--line)}
+.tile{background:var(--panel2);border-radius:10px}
+.tile .v{font-family:var(--mono);font-weight:600;font-size:1.2rem}
+.item,.step{border-top-color:var(--hair)}
+.chip{border-radius:6px;background:var(--soft);color:var(--muted);font-size:.68rem}
+.seg{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:3px}
+.seg button{border-radius:7px;padding:6px 12px;font-weight:550}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);box-shadow:inset 0 0 0 1px rgba(63,169,245,.45)}
+button,.ghost{border-radius:8px}
+button.primary{background:var(--accent);color:var(--accent-ink);border:0}
+input,select{background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--ink)}
+table{font-size:.84rem}
+th{color:var(--dim)}
+th,td{border-bottom-color:var(--hair)}
+header.top{position:sticky;top:0;z-index:20;background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:-18px -16px 0;padding:12px 16px;border-bottom:1px solid var(--hair)}
+header.top h1{font-size:1.15rem}
+header.top .eyebrow{display:none}
+.pill{background:var(--panel);border:1px solid var(--line)}
+/* resource colours */
+.c-coin{color:var(--coin)} .c-cell{color:var(--cell)} .c-shard{color:var(--shard)} .c-stone{color:var(--stone)} .c-gem{color:var(--gem)} .c-medal{color:var(--medal)} .c-bits{color:var(--bits)}
+
+/* ---- navigation rail ---- */
+.side{display:none}
+nav.tabs{background:var(--glass);border-top:1px solid var(--hair)}
+nav.tabs .in{max-width:none}
+nav.tabs button[aria-current="page"]{color:var(--accent)}
+@media (min-width:900px){
+  body{padding:0}
+  .shell{display:grid;grid-template-columns:72px minmax(0,1fr);gap:0;max-width:none;margin:0}
+  .side{display:flex;flex-direction:column;align-items:center;gap:4px;position:sticky;top:0;height:100vh;padding:14px 0;background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;scrollbar-width:none}
+  .brand{padding:0 0 10px;justify-content:center}
+  .brand b{display:none}
+  .side-group{align-items:center;gap:4px;padding:6px 0;border-top:1px solid var(--hair);width:100%}
+  .side-group:first-of-type{border-top:0}
+  .side-label{display:none}
+  .side button{position:relative;width:44px;height:44px;display:grid;place-items:center;padding:0;border-radius:10px;color:var(--muted)}
+  .side button svg{width:21px;height:21px}
+  .side button:hover{background:var(--soft);color:var(--ink)}
+  .side button.on{background:var(--accent);color:var(--accent-ink)}
+  .side button .tip{position:absolute;left:54px;top:50%;transform:translateY(-50%);background:#000;color:#fff;font-size:.78rem;padding:4px 8px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s;z-index:50}
+  .side button:hover .tip{opacity:1}
+  .wrap{padding:18px 28px 40px;max-width:1500px}
+  header.top{margin:-18px -28px 0;padding:14px 28px}
+  nav.tabs{display:none}
+}
+.side button .tip{display:none}
+@media (min-width:900px){ .side button .tip{display:block} }
+
+/* ---- page header with hero number ---- */
+.ph{display:flex;flex-direction:column;gap:14px}
+.ph-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.ptabs{display:flex;gap:2px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:3px;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.ptabs button{border:0;background:transparent;color:var(--muted);padding:7px 13px;border-radius:7px;font-weight:550;white-space:nowrap;box-shadow:none}
+.ptabs button:hover{color:var(--ink)}
+.ptabs button.on{background:var(--accent-soft);color:var(--accent);box-shadow:inset 0 0 0 1px rgba(63,169,245,.45)}
+.wallet{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-weight:600;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.88rem;white-space:nowrap}
+.wallet i{width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block}
+.wallet span{color:var(--muted);font-family:var(--body);font-weight:500}
+.hero{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px 14px}
+.hero .big{font-family:var(--mono);font-size:clamp(2.2rem,6vw,3.4rem);font-weight:700;line-height:1;letter-spacing:-.03em}
+.hero .lbl{color:var(--muted);padding-bottom:6px}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+@media (min-width:700px){ .kpis{grid-template-columns:repeat(4,minmax(0,1fr))} }
+.kpi{display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi .k{color:var(--muted);font-size:.8rem}
+.kpi .v{font-family:var(--mono);font-weight:600;font-size:.95rem;overflow-wrap:anywhere}
+.kpi .v small{color:var(--muted);font-weight:400}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.toolbar input[type=search]{flex:1 1 200px;padding:8px 12px}
+.toolbar label.check{white-space:nowrap}
+
+/* ---- upgrade sections + tables ---- */
+.usec{display:flex;flex-direction:column;gap:8px}
+.usec-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;justify-content:space-between}
+.usec-h .t{display:flex;align-items:center;gap:10px;font-weight:650;font-size:1.02rem}
+.badge{font-family:var(--mono);font-size:.74rem;font-weight:500;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 9px;white-space:nowrap}
+.badge b{color:var(--ink)}
+.badge.lock{color:var(--dim)}
+.badge.ok{color:var(--good);border-color:rgba(76,211,154,.35)}
+.usec-h .r{font-size:.8rem;color:var(--muted);font-family:var(--mono)}
+.usec-h .r b{color:var(--ink)}
+.utable{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.urow{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.9fr) 72px 92px;gap:6px 12px;align-items:center;padding:9px 14px;border-top:1px solid var(--hair)}
+.urow:first-child{border-top:0}
+.urow.head{color:var(--dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding-block:8px;background:var(--panel2)}
+.urow .n{font-weight:600;min-width:0;overflow-wrap:anywhere;display:flex;align-items:center;gap:8px}
+.urow .val{font-family:var(--mono);font-size:.84rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.urow .val .to{color:var(--accent)}
+.urow .lv{font-family:var(--mono);font-size:.84rem;text-align:right;white-space:nowrap}
+.urow .lv span{color:var(--dim)}
+.urow .cost{font-family:var(--mono);font-size:.84rem;text-align:right;white-space:nowrap}
+.urow .bar2{grid-column:1 / -1;height:4px;background:var(--soft);border-radius:4px;overflow:hidden;position:relative}
+.urow .bar2 i{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:4px}
+.urow .bar2 i.plan{background:rgba(63,169,245,.35)}
+.urow.max .bar2 i{background:var(--good)}
+.urow.max .cost{color:var(--good)}
+.urow.lock{opacity:.55}
+.urow.pick{background:linear-gradient(90deg,rgba(63,169,245,.09),transparent 60%)}
+.pk{font-family:var(--mono);font-size:.68rem;font-weight:700;color:var(--accent-ink);background:var(--accent);border-radius:5px;padding:1px 6px;white-space:nowrap}
+.urow .sub{grid-column:1 / -1;font-size:.78rem;color:var(--muted)}
+@media (min-width:900px){
+  .urow{grid-template-columns:minmax(180px,1.5fr) 110px 120px minmax(120px,1.4fr) 110px 110px 92px;padding:10px 16px}
+  .urow .bar2{grid-column:auto;height:6px}
+  .urow .sub{grid-column:2 / -1}
+}
+.urow .nx{font-family:var(--mono);font-size:.84rem;color:var(--accent);white-space:nowrap}
+.urow .tm{font-family:var(--mono);font-size:.8rem;color:var(--muted);text-align:right;white-space:nowrap}
+@media (max-width:899px){ .urow .nx,.urow .tm,.urow.head .hx{display:none} }
+.empty-note{padding:14px 16px;color:var(--muted);font-size:.86rem}
+.lockbox{display:flex;flex-wrap:wrap;gap:6px 24px;align-items:center;justify-content:space-between;border:1px dashed var(--line);border-radius:var(--r);padding:12px 16px;color:var(--muted);font-size:.86rem}
+.lockbox b{color:var(--ink)}
+
+/* ---- cards grid ---- */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.ccard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.ccard.eq{border-color:rgba(63,169,245,.55)}
+.ccard.no{opacity:.45}
+.ccard .h{display:flex;justify-content:space-between;gap:8px;font-weight:650}
+.stars{color:var(--coin);letter-spacing:2px;font-size:.9rem}
+.stars .off{color:var(--soft)}
+.ccard .m{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.mini{height:4px;background:var(--soft);border-radius:4px;overflow:hidden}
+.mini i{display:block;height:100%;background:var(--accent)}
+@media (max-width:899px){
+  .urow .bar2{order:10} .urow .sub{order:11}
+  .urow .n{flex-wrap:wrap;gap:4px 8px}
+  .urow{grid-template-columns:minmax(0,1fr) minmax(0,auto) auto auto}
+  .urow .val{max-width:34vw}
+}
 </style>
 <div class="shell">
 <aside id="side" class="side" aria-label="Sections">
@@ -1662,6 +1807,7 @@ function renderSection(id) {
   out.innerHTML = S[1]() || '<div class="panel"><p class="muted">This part could not be read from the save.</p></div>';
   if (id === 'labs') bindLabFilter();
   if (id === 'mods') bindModFilter();
+  if (S[0] === 'Workshop' && typeof wsFilter === 'function') wsFilter();
 }
 const LEAGUES = ['Copper', 'Silver', 'Gold', 'Platinum', 'Champion', 'Legend'];
 const leagueName = i => i == null ? '–' : LEAGUES[i] || 'League ' + (i + 1);
@@ -1959,7 +2105,201 @@ $$('nav.tabs button').forEach(b => b.addEventListener('click', () => show(b.data
 document.addEventListener('click', e => { const g = e.target.closest('[data-go]'); if (g) show(g.dataset.go); });
 function renderAll() { planCache = null; ENG = {}; renderHome(); renderRuns(); renderPlan(); if (SECTIONS[curView]) renderSection(curView); }
 setInterval(() => { const now = Date.now(); $$('[data-end]').forEach(el => { const end = +el.dataset.end; if (end) { const l = end - now; el.textContent = l <= 0 ? 'done' : fmtDur(l / 1000); } }); }, 30000);
-buildNav();
+/* ===== Pro UI: icon rail, page headers, upgrade tables (Workshop & gear) ===== */
+const ICO = {
+  home: '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
+  farm: '<path d="M3 20h18"/><path d="M6 16l4-5 3 3 5-7"/><circle cx="18" cy="7" r="1.5"/>',
+  runs: '<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',
+  tourney: '<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/>',
+  labs: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/>',
+  ws: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>',
+  mods: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
+  plan: '<circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h6a4 4 0 0 1 0 8h-4a4 4 0 0 0 0 8h6"/>',
+  coll: '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+  econ: '<circle cx="9" cy="9" r="6"/><path d="M15.5 9.5A6 6 0 1 1 9.5 15.5"/>',
+  life: '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/>',
+  tools: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2M8 18h8"/>',
+  data: '<path d="M12 15V3M7 8l5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>'
+};
+NAV.length = 0;
+NAV.push(
+  ['Plan', [['home', 'Action plan'], ['farm', 'Farming'], ['plan', 'Coin path']]],
+  ['Account', [['ws', 'Workshop'], ['labs', 'Labs'], ['mods', 'Modules'], ['coll', 'Relics & Vault']]],
+  ['Results', [['runs', 'Runs'], ['tourney', 'Tournaments'], ['econ', 'Currencies'], ['life', 'Lifetime']]],
+  ['Tools', [['tools', 'Calculators'], ['data', 'Import & data']]]
+);
+Object.assign(TITLES, { ws: 'Workshop', uw: 'Workshop', bots: 'Workshop', guard: 'Workshop', cards: 'Workshop', enh: 'Workshop' });
+const svgI = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICO[k] || ICO.home}</svg>`;
+function buildRail() {
+  $('#sideNav').innerHTML = NAV.map(([g, items]) => `<div class="side-group">${items.map(([id, n]) => `<button type="button" data-go="${id}" data-nav="${id}" aria-label="${esc(n)}">${svgI(id)}<span class="tip">${esc(n)}</span></button>`).join('')}</div>`).join('');
+  $('#menuOut').innerHTML = NAV.map(([g, items]) => `<div class="panel"><h2>${g}</h2><div class="menu-grid">${items.map(([id, n]) => `<button type="button" class="menu-btn" data-go="${id}">${n}</button>`).join('')}</div></div>`).join('')
+    + `<div class="panel"><h2>Workshop tabs</h2><div class="menu-grid">${WS_TABS.map(([id, n]) => `<button type="button" class="menu-btn" data-go="${id}">${n}</button>`).join('')}</div></div>`;
+}
+
+/* ---- shared pieces ---- */
+const RES = { coins: ['c-coin', 'coins'], stones: ['c-stone', 'stones'], medals: ['c-medal', 'medals'], bits: ['c-bits', 'bits'], gems: ['c-gem', 'gems'], cells: ['c-cell', 'cells'] };
+function wallet(kind, v, extra) { const [c, n] = RES[kind]; return `<span class="wallet ${c}"><i></i>${kind === 'coins' ? fmt(v) : fmtInt(v)} <span>${n}${extra ? ' · ' + extra : ''}</span></span>`; }
+function pageHead({ tabs, tab, wal, big, lbl, kpis }) {
+  return `<div class="ph"><div class="ph-top">${tabs ? `<div class="ptabs" role="tablist">${tabs.map(([id, n]) => `<button type="button" role="tab" data-wstab="${id}" class="${id === tab ? 'on' : ''}">${n}</button>`).join('')}</div>` : '<span></span>'}${wal || ''}</div>
+    ${big != null ? `<div class="hero"><span class="big">${big}</span><span class="lbl">${lbl || ''}</span></div>` : ''}
+    ${kpis ? `<div class="kpis">${kpis.filter(Boolean).map(([k, v, cls]) => `<div class="kpi"><span class="k">${esc(k)}</span><span class="v ${cls || ''}">${v}</span></div>`).join('')}</div>` : ''}</div>`;
+}
+const UHEAD = (valLbl, costLbl) => `<div class="urow head"><span>Upgrade</span><span>${valLbl || 'Value'}</span><span class="hx">Next</span><span class="hx">Progress</span><span style="text-align:right">Level</span><span style="text-align:right">${costLbl || 'Next cost'}</span><span class="hx" style="text-align:right">To max</span></div>`;
+function urow(o) {
+  const p = o.max ? Math.min(100, (o.lv || 0) / o.max * 100) : 0, pp = o.max && o.to ? Math.min(100, o.to / o.max * 100) : 0;
+  return `<div class="urow ${o.cls || ''}" data-q="${esc(String(o.name).toLowerCase())}">
+    <span class="n">${o.lock ? '🔒 ' : ''}${esc(o.name)}${o.pick ? ` <span class="pk" title="In your plan: buy up to level ${o.to}">#${o.pick} → ${o.to}</span>` : ''}</span>
+    <span class="val">${o.val ?? '–'}</span>
+    <span class="nx">${o.nv != null ? '→ ' + o.nv : ''}</span>
+    <span class="bar2" title="${o.max ? Math.round(p) + '% of max' : ''}">${pp > p ? `<i class="plan" style="width:${pp.toFixed(1)}%"></i>` : ''}<i style="width:${p.toFixed(1)}%"></i></span>
+    <span class="lv">${o.lv ?? '–'}<span>${o.max ? ' / ' + o.max : ''}</span></span>
+    <span class="cost ${o.costCls || ''}">${o.cost ?? '–'}</span>
+    <span class="tm">${o.tomax ?? ''}</span>
+    ${o.sub ? `<span class="sub">${o.sub}</span>` : ''}</div>`;
+}
+function usec({ title, badge, right, rows, head, lockbox }) {
+  return `<section class="usec"><div class="usec-h"><span class="t">${title}${badge || ''}</span><span class="r">${right || ''}</span></div>${lockbox || ''}<div class="utable">${head || UHEAD()}${rows.join('') || '<div class="empty-note">Nothing here.</div>'}</div></section>`;
+}
+const maxBadge = (n, of) => `<span class="badge ${n === of && of ? 'ok' : ''}"><b>${n}</b> of ${of} maxed</span>`;
+
+/* ---- value formatting by stat ---- */
+const PCT_STATS = /Chance|Percent|Free .* Upgrade|Interest|Recovery Amount|Thorns|Lifesteal|Level Skip/;
+const X_STATS = /Factor|Mult|Bonus|Max Recovery/;
+function statFmt(k, v) {
+  if (v == null || !isFinite(v)) return '–';
+  const r = x => Math.abs(x) >= 1000 ? fmt(x) : String(Math.round(x * 1000) / 1000);
+  if (PCT_STATS.test(k)) return (v <= 1 && !/Lifesteal/.test(k) ? r(v * 100) : r(v)) + '%';
+  if (X_STATS.test(k)) return '×' + r(v);
+  if (/Range|Radius|Size/.test(k)) return r(v) + 'm';
+  if (/Rebuild|Duration/.test(k) && !/Chance/.test(k)) return r(v) + 's';
+  return r(v);
+}
+/* ---- Workshop & gear page ---- */
+const WS_TABS = [['ws', 'Workshop'], ['enh', 'Enhancements'], ['uw', 'Ultimate Weapons'], ['bots', 'Bots'], ['guard', 'Guardian'], ['cards', 'Cards']];
+let WSTAB = 'ws'; try { WSTAB = localStorage.getItem('tc-wstab') || 'ws'; } catch (e) {}
+function wsMax(k) { const t = T.WORKSHOP_DATA && T.WORKSHOP_DATA[k]; return t ? Object.keys(t).length - 1 : null; }
+function wsSpent(k, l) { let s = 0; for (let i = 0; i < l; i++) { const r = wsRaw(k, i); if (r && r.coins > 0) s += r.coins; } return s; }
+function wsToMax(k, l) { const m = wsMax(k); let s = 0; if (m == null) return null; for (let i = l; i < m; i++) { const c = wsCost(k, i); if (c) s += c; } return s; }
+function wsPicks() {
+  return memo('wsPicks:' + GOAL, () => {
+    const plan = wsPlan(GOAL) || []; const cur = (ACC.cur && ACC.cur.coins) || 0;
+    const buy = plan.filter(x => x.cum <= cur); const M = {};
+    wsShopping(buy).forEach((x, i) => { M[x.k] = { rank: i + 1, to: x.to, cost: x.cost, g: x.g }; });
+    return { M, total: buy.length ? buy[buy.length - 1].cum : 0, n: buy.length };
+  });
+}
+let WSF = { q: '', only: false };
+function tabWorkshop() {
+  const W = ACC.ws, cur = ACC.cur || {};
+  if (!W) return '<div class="panel"><p class="muted">No workshop data in this save.</p></div>';
+  const P = wsPicks();
+  const rowsOf = g => Object.entries(W.levels).filter(([k]) => wsGroup(k) === g);
+  let maxed = 0, total = 0, toMaxAll = 0, cheapest = null;
+  const sect = g => {
+    let spent = 0, toMax = 0, mx = 0; const list = rowsOf(g);
+    const rows = list.map(([k, l]) => {
+      const max = wsMax(k), full = max != null && l >= max, c = wsCost(k, l), v = wsValue(k, l), pk = P.M[k];
+      const tv = pk ? wsValue(k, pk.to) : (c ? wsValue(k, l + 1) : null);
+      spent += wsSpent(k, l); const tm = full ? 0 : wsToMax(k, l); toMax += tm || 0; if (full) mx++;
+      if (c && (!cheapest || c < cheapest.c)) cheapest = { k, l, c };
+      return urow({ name: k, val: statFmt(k, v), nv: tv != null && !full ? statFmt(k, tv) : null, lv: l, max, to: pk ? pk.to : null, pick: pk ? pk.rank : null,
+        cost: full ? 'Maxed' : c ? fmt(c) : '–', costCls: full ? '' : 'c-coin', tomax: full ? '' : fmt(tm), cls: (full ? 'max ' : '') + (pk ? 'pick' : '') });
+    });
+    maxed += mx; total += list.length; toMaxAll += toMax;
+    return usec({ title: g, badge: maxBadge(mx, list.length), right: `Spent <b>${fmt(spent)}</b> · to max <b>${fmt(toMax)}</b>`, rows, head: UHEAD('Value', 'Next level') });
+  };
+  const body = sect('Attack') + sect('Defense') + sect('Utility');
+  const disc = ['Attack', 'Defense', 'Utility'].map(g => labL(WS_DISCOUNT_LAB[g])).some(x => x > 0);
+  return pageHead({ tabs: WS_TABS, tab: 'ws', wal: wallet('coins', cur.coins),
+    big: fmt(W.spent), lbl: 'coins spent on the workshop',
+    kpis: [['Buy now (plan)', P.n ? `${fmt(P.total)} <small>· ${P.n} levels</small>` : 'nothing affordable', 'c-coin'],
+      ['Maxed', `${maxed} <small>of ${total}</small>`], ['To max', fmt(toMaxAll)],
+      ['Cheapest next level', cheapest ? `${fmt(cheapest.c)} <small>${esc(cheapest.k)} ${cheapest.l + 1}</small>` : '–']] })
+    + `<div class="toolbar"><input type="search" id="wsQ" placeholder="Search upgrades" value="${esc(WSF.q)}"><label class="check"><input type="checkbox" id="wsOnly" ${WSF.only ? 'checked' : ''}> Only plan picks</label>${goalSeg().replace('<p class="small muted">', '<p class="small muted" hidden>')}</div>`
+    + body + `<p class="note"><span class="pk">#1 → 47</span> = your plan for the "${esc(GOALS.find(x => x[0] === GOAL)[1])}" goal: buy in that order, up to that level, with the coins you have. Prices${disc ? ' include your workshop discount labs' : ' are full price (no workshop discount lab yet)'}; "To max" is the coins left to max that upgrade.</p>`;
+}
+function tabEnh() {
+  const W = ACC.ws || {}; const B = BLD('workshop.upgrade'); const opts = B ? B.fields.find(f => f.key === 'costKey').options : [];
+  const on = !!(ACC.labs && ACC.labs.enhUnlocked);
+  const rows = opts.map(o => { const l = (W.enh || {})[o.value] || 0; const c = on ? calc('workshop.upgrade', { costKey: o.value, currentLevel: l, targetLevel: l + 1 }) : null; const lv = c && c.levels && c.levels[0];
+    return urow({ name: o.label + ' +', val: '×' + (1 + 0.01 * l).toFixed(2), nv: lv ? '×' + (Math.round(lv.bonusMultiplier * 100) / 100).toFixed(2) : null, lv: l, cost: lv ? fmt(lv.discountedCost) : '–', costCls: 'c-coin', cls: on ? '' : 'lock', lock: !on }); });
+  return pageHead({ tabs: WS_TABS, tab: 'enh', wal: wallet('coins', (ACC.cur || {}).coins), big: fmt(W.spentEnh || 0), lbl: 'coins spent on enhancements' })
+    + usec({ title: 'Workshop Enhancements', badge: on ? '' : '<span class="badge lock">Locked</span>', rows, head: UHEAD('Bonus', 'Next level'),
+      lockbox: on ? '' : `<div class="lockbox"><span>Unlocked by the lab <b>Workshop Enhancements</b> (needs Tier 12, wave 60). Each level adds ×0.01 to its stat.</span></div>` });
+}
+function tabUw() {
+  const U = ACC.uw || [], st = (ACC.cur || {}).stones || 0, SP = stonePicks(8); let all = 0, unl = 0;
+  const pickOf = (w, s) => { const nm = uwName(w + ' ' + s); const i = SP.findIndex(x => x.name === nm || x.name === w + ' ' + s); return i >= 0 ? { rank: i + 1, to: SP[i].to } : null; };
+  const secs2 = U.map(w => {
+    if (w.u) unl++;
+    let toMax = 0, mx = 0; const stats = w.stats.filter(s => !s.lock);
+    const rows = stats.map(s => {
+      const lv = s.l || 0; const one = calc('uw.stones', { weapon: w.n, stat: s.n, currentLevel: lv, targetLevel: lv + 1 }); const max = one && one.maxLevel; const full = max != null && lv >= max;
+      let tm = null; if (max != null && !full) { const a = calc('uw.stones', { weapon: w.n, stat: s.n, currentLevel: lv, targetLevel: max }); tm = a ? a.totalStones : null; if (w.u) toMax += tm || 0; }
+      if (full) mx++; const pk = w.u ? pickOf(w.n, s.n) : null;
+      return urow({ name: s.n + (s.plus ? ' +' : ''), val: esc(s.v), lv, max, to: pk ? pk.to : null, pick: pk ? pk.rank : null, cost: full ? 'Maxed' : one && one.totalStones ? fmtInt(one.totalStones) : '–', costCls: 'c-stone', tomax: tm != null ? fmtInt(tm) : '', cls: (full ? 'max ' : '') + (w.u ? '' : 'lock ') + (pk ? 'pick' : '') });
+    });
+    all += toMax;
+    return { w, html: usec({ title: esc(w.n), badge: w.u ? maxBadge(mx, stats.length) : '<span class="badge lock">Locked</span>', right: w.u ? `to max <b class="c-stone">${fmtInt(toMax)}</b> stones` : '', rows, head: UHEAD('Value', 'Next (stones)') }) };
+  });
+  const first = SP[0];
+  return pageHead({ tabs: WS_TABS, tab: 'uw', wal: wallet('stones', st), big: fmtInt((ACC.totals || {}).stonesSpent || 0), lbl: 'Power Stones spent',
+    kpis: [['Unlocked', `${unl} <small>of ${U.length}</small>`], ['Best next (coins)', first ? `${esc(first.name)} <small>${fmtInt(first.cost)} stones</small>` : '–', 'c-stone'],
+      ['To max (unlocked)', fmtInt(all) + ' <small>stones</small>'], ['Earned lifetime', fmtInt((ACC.totals || {}).stonesEarned)]] })
+    + secs2.sort((a, b) => b.w.u - a.w.u).map(x => x.html).join('')
+    + `<p class="note"><span class="pk">#1 → 3</span> = order to spend stones for the most coins per kill (economy path).</p>`;
+}
+function tabBots() {
+  const B = ACC.bots || { rows: [] }, md = (ACC.cur || {}).medals || 0;
+  const s = B.rows.map(b => {
+    const names = (calc('bot.upgrade', { bot: b.n }) || {}).statsForBot || []; let mx = 0;
+    const rows = b.lv.map((lv, i) => { const st = names[i]; if (!st) return ''; const one = calc('bot.upgrade', { bot: b.n, stat: st, currentLevel: lv, targetLevel: lv + 1 }); const max = one && one.maxLevel, full = max != null && lv >= max; if (full) mx++;
+      let tm = null; if (max != null && !full) { const a = calc('bot.upgrade', { bot: b.n, stat: st, currentLevel: lv, targetLevel: max }); tm = a ? a.totalMedals : null; }
+      const cur0 = calc('bot.upgrade', { bot: b.n, stat: st, currentLevel: Math.max(0, lv - 1), targetLevel: lv }); const val = lv > 0 && cur0 && cur0.levels && cur0.levels[0] ? cur0.levels[0].value : null;
+      return urow({ name: st, val: val ? esc(val) : (lv ? '' : 'base'), nv: one && one.levels && one.levels[0] && !full ? esc(one.levels[0].value) : null, lv, max, cost: full ? 'Maxed' : one && one.totalMedals ? fmtInt(one.totalMedals) : '–', costCls: 'c-medal', tomax: tm != null ? fmtInt(tm) : '', cls: (full ? 'max ' : '') + (b.u ? '' : 'lock') }); });
+    return usec({ title: esc(b.n), badge: b.u ? maxBadge(mx, b.lv.length) : '<span class="badge lock">Locked</span>', rows, head: UHEAD('Value', 'Next (medals)') });
+  }).join('');
+  return pageHead({ tabs: WS_TABS, tab: 'bots', wal: wallet('medals', md), big: fmtInt(B.medals || 0), lbl: 'medals spent on bots',
+    kpis: [['Unlocked', `${B.rows.filter(r => r.u).length} <small>of ${B.rows.length}</small>`], ['Coins from bots', fmt(B.coins), 'c-coin'], ['Medals on hand', fmtInt(md), 'c-medal'], ['Earned lifetime', fmtInt((ACC.totals || {}).medalsEarned)]] }) + s;
+}
+function tabGuard() {
+  const G = ACC.guard, bits = (ACC.cur || {}).bits || 0;
+  const head = pageHead({ tabs: WS_TABS, tab: 'guard', wal: wallet('bits', bits), big: fmtInt((ACC.totals || {}).bitsSpent || 0), lbl: 'bits spent',
+    kpis: G && G.u ? [['Chip slots', fmtInt(G.slots)], ['Damage', fmt(G.damage)], ['Coins stolen', fmt(G.coins), 'c-coin'], ['Catches', fmt(G.catches)]] : null });
+  if (!G || !G.u) return head + `<div class="lockbox"><span><b>Guardian</b> is not unlocked yet. You already hold <b class="c-bits">${fmtInt(bits)} bits</b> for its chips.</span></div>`;
+  return head + usec({ title: 'Chips', rows: G.chips.map(c => urow({ name: c.n + (c.eq != null ? ' (equipped)' : ''), val: esc(c.t || ''), lv: c.lv.join(' · ') })), head: UHEAD('Type', '') });
+}
+function tabCards() {
+  const C = ACC.cards; if (!C) return '<div class="panel"><p class="muted">No card data in this save.</p></div>';
+  const rows = C.rows.filter(r => r.n), own = rows.filter(r => r.u);
+  const sorted = rows.slice().sort((a, b) => (b.a - a.a) || (b.u - a.u) || (b.l - a.l));
+  return pageHead({ tabs: WS_TABS, tab: 'cards', wal: wallet('gems', (ACC.cur || {}).gems), big: `${own.length}<small style="font-size:.5em;color:var(--muted)"> / ${rows.length}</small>`, lbl: 'cards owned',
+    kpis: [['Card slots', fmtInt(C.slots)], ['Max stars (7★)', `${own.filter(r => r.l >= 7).length} <small>of ${rows.length}</small>`], ['Masteries', `${own.filter(r => r.m).length} <small>of ${rows.length}</small>`], ['Equipped', rows.filter(r => r.a).map(r => esc(r.n)).join(', ') || '–']] })
+    + `<div class="cgrid">${sorted.map(r => `<div class="ccard ${r.a ? 'eq' : ''} ${r.u ? '' : 'no'}"><div class="h"><span>${esc(r.n)}</span>${r.a ? '<span class="chip f">equipped</span>' : ''}</div>
+      <div class="stars">${'★'.repeat(Math.min(7, r.u ? r.l : 0))}<span class="off">${'★'.repeat(7 - Math.min(7, r.u ? r.l : 0))}</span></div>
+      <div class="m"><span>${r.u ? 'Level ' + r.l + ' / 7' : 'Not owned'}</span><span>${r.u ? fmtInt(r.cnt) + ' cop' + (r.cnt === 1 ? 'y' : 'ies') : ''}</span></div>
+      <div class="mini"><i style="width:${(r.u ? r.l / 7 * 100 : 0).toFixed(0)}%"></i></div>${r.m ? '<span class="chip max">mastery</span>' : ''}</div>`).join('')}</div>`;
+}
+function secWorkshop() {
+  $$('[data-nav]').forEach(b => b.classList.toggle('on', b.dataset.nav === 'ws'));
+  const f = { ws: tabWorkshop, enh: tabEnh, uw: tabUw, bots: tabBots, guard: tabGuard, cards: tabCards }[WSTAB] || tabWorkshop;
+  return f();
+}
+function wsFilter() {
+  const q = WSF.q.trim().toLowerCase();
+  $$('#secOut .urow:not(.head)').forEach(r => { r.hidden = (q && !(r.dataset.q || '').includes(q)) || (WSF.only && !r.classList.contains('pick')); });
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-wstab]'); if (!b) return;
+  WSTAB = b.dataset.wstab; try { localStorage.setItem('tc-wstab', WSTAB); } catch (er) {}
+  renderSection('ws'); window.scrollTo(0, 0);
+});
+document.addEventListener('input', e => { if (e.target.id === 'wsQ') { WSF.q = e.target.value; wsFilter(); } });
+document.addEventListener('change', e => { if (e.target.id === 'wsOnly') { WSF.only = e.target.checked; wsFilter(); } });
+SECTIONS.ws = ['Workshop', () => ACC.ws ? secWorkshop() : null];
+for (const t of ['enh', 'uw', 'bots', 'guard', 'cards']) SECTIONS[t] = ['Workshop', () => { WSTAB = t; try { localStorage.setItem('tc-wstab', t); } catch (e) {} return secWorkshop(); }];
+
+buildNav(); buildRail();
 
 loadCalcState();
 try { const p = localStorage.getItem('tc-calc-pick'); if (p && BUILDERS.some(b => b.id === p)) $('#calcPick').value = p; } catch (e) {}
